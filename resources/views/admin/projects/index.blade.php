@@ -23,6 +23,18 @@
                             <i class="fa-solid fa-eye"></i>
                         </a>
                     </td>
+                    <td>
+                        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning">
+                            <i class="fa-solid fa-gear"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger deletBtn" type="button">Elimina</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
 
