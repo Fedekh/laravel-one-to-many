@@ -14,16 +14,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body >
     <div id="app">
 
-
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        
+        <nav class="navbar navbar-expand-md" style="color: #07e9b5 ">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
@@ -85,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class=" d-flex ">
             @yield('content')
         </main>
     </div>
