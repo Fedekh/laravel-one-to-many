@@ -5,9 +5,7 @@
         <div class="row row-cols-3 flex-column ">
 
             <section class="bio text-center my-5 mx-auto">
-                <h1 class="welcome">Welcome! </h1>
-                {{-- <a href="/links/contact" class="btn btn-success my-4">Contac me</a> --}}
-                {{-- <a href="/links/about" class="btn btn-primary my-4">About me</a> --}}
+                <h1 class="welcome">Welcome! 📱</h1>
             </section>
             <figure class="mx-auto my-5 code d-flex gap-2 flex-row align-items-end justify-content-between ">
                 <div class="tooltipp" data-tooltip="HTML">
@@ -77,4 +75,5 @@
                 </ul>
             </div>
         </div>
+    </div>
     @endsection

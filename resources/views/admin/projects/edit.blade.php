@@ -4,7 +4,7 @@
     <div class="container text-center">
 
 
-        <h1 class="my-3">Crea il tuo projects : </h1>
+        <h1 class="my-3">Modifica il tuo progetto {{ $project->title}}: </h1>
         <div class="">
 
             <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
@@ -36,7 +36,7 @@
                     <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger deletBtn">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </form>
@@ -46,4 +46,7 @@
         </div>
 
     </div>
+
+    @include('admin.projects.delete')
+
 @endsection

@@ -4,13 +4,14 @@
     @include('partials.messages')
 
 
-    <h1>La lista dei progetti</h1>
+    <h1>La lista dei progetti: <span class="number">{{ $count }}</span> </h1>
+
 
     <div class="text-end mb-5">
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Crea un nuovo progetto</a>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-info">Crea un nuovo progetto</a>
     </div>
 
-    <table class="table">
+    <table class="table table-hover text-white rounded">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -35,7 +36,7 @@
                         <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-danger deletBtn">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
@@ -44,5 +45,9 @@
             @endforeach
 
         </tbody>
+    
     </table>
+    @include('admin.projects.delete')
+
+
 @endsection
