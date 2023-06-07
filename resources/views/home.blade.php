@@ -63,8 +63,8 @@
                         </a>
                     </li>
                     <li class="my-2">
-                        <a href="https://discord.gg/eaKFCHrV">
-                            <i class="fa-brands fa-slack"></i>
+                        <a href="mailTo:federicocet@gmail.com">
+                            <i class="fa-solid fa-envelope"></i>
                         </a>
                     </li>
                     <li class="my-2">
@@ -76,4 +76,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

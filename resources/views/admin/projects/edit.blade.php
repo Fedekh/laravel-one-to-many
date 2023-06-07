@@ -12,7 +12,7 @@
                 @method('PUT')
                 <!-- serve per sovrascrivere il metodo post dato che il form supporta solo get e post -->
                 <!-- il value è per far si che quando si tenta di modificare un dato, questo rimanga salvato -->
-                <div class="form-group">
+                <div class="form-group w-50 mx-auto mt-5">
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title"
                         class="form-control @error('title') is-invalid @enderror"
@@ -24,9 +24,9 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
+                <div class="form-group w-50 mx-auto mt-5">
                     <label for="type">Tipologia</label>
-                    <select class="form-select" id="type" name="type_id">
+                    <select class="form-select mx-auto w-25" id="type" name="type_id">
                         <option value=""></option>
                         @foreach ($types as $type)
                             <option @selected($type->id == old('type_id',$project->type?->id)) value="{{ $type->id }}">{{ $type->name }}</option>
@@ -35,7 +35,7 @@
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group w-50 mx-auto mt-5">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description', $project->description) }}</textarea>
 
@@ -45,7 +45,6 @@
                     <a class="btn btn-success" href="{{ route('admin.projects.index') }}">Annulla</a>
                 </div>
             </form>
-            
             <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                 @csrf
                 @method('DELETE')
@@ -53,6 +52,8 @@
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </form>
+            
+            
         </div>
 
     </div>
