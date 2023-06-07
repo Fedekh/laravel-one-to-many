@@ -24,6 +24,16 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label for="type">Tipologia</label>
+                    <select class="form-select" id="type" name="type_id">
+                        <option value=""></option>
+                        @foreach ($types as $type)
+                            <option @selected($type->id == old('type_id',$project->type?->id)) value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
 
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -33,16 +43,16 @@
                 <div class="cta d-flex-gap-3">
                     <input type="submit" value="Salva" class="btn btn-primary">
                     <a class="btn btn-success" href="{{ route('admin.projects.index') }}">Annulla</a>
-                    <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger deletBtn">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </form>
                 </div>
             </form>
-
+            
+            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger deletBtn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </form>
         </div>
 
     </div>

@@ -32,7 +32,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->dropForeign('projects_type_id_foreign'); // si scrive il nome della tabella principale + _ + il nome della colonna + _ + foreign e significa che si cancella la chiave esterna
-            $table->dropcolumn('type_id'); // si cancella la colonna type_id
+            $table->dropcolumn('type_id');                // si cancella la colonna type_id
 
             //questi due comandi, tradotti, significano che si cancella la chiave esterna e la colonna type_id
         });

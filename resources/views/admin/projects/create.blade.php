@@ -10,7 +10,8 @@
 
             <div class="form-group">
                 <label for="title">Inserisci titolo</label>
-                <input type="text" name="title" class="form-control mx-auto my-3 w-50 @error('title') is-invalid @enderror" id="title"
+                <input type="text" name="title"
+                    class="form-control mx-auto my-3 w-50 @error('title') is-invalid @enderror" id="title"
                     placeholder="Inserisci titolo" value="{{ old('title') }}">
                 @error('title')
                     <div class="invalid-feedback">
@@ -18,12 +19,19 @@
                     </div>
                 @enderror
             </div>
-
+            <div class="form-group">
+                <label for="type">Inserisci la tipologia</label>
+                <select class="form-select" id="type" name="type_id">
+                    <option value=""></option>
+                    @foreach ($types as $type)
+                        <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="content">Inserisci descrizione</label>
-                <input type="text" name="content"
-                    class="form-control my-3 mx-auto w-50" id="content" placeholder="Inserisci descrizione" value="{{ old('content') }}">
+                <textarea name="content" id="content"class="form-control" cols="30" rows="10">{{ old('content') }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

@@ -5,7 +5,15 @@
     <div class="text-end">
         {{ $project->slug }}
     </div>
+
     <p class="mt-4">{{ $project->content }}</p>
+    
+    @if ($project->type)
+        <h3>Tipologia: {{ $project->type->name }}</h3>
+    @else
+        <h3>Nessuna Tipologia</h3>
+    @endif
+
     <div class="cta d-flex gap-3">
 
         <a href="{{ route('admin.projects.index') }}" class="btn btn-success">
@@ -18,8 +26,7 @@
                 <i class="fa-solid fa-trash"></i>
             </button>
         </form>
-        
+
     </div>
     @include('admin.projects.delete')
-
 @endsection
