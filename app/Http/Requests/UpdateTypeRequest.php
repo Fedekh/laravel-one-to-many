@@ -25,7 +25,7 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','min:3','max:150', Rule::unique('projects')->ignore($this->project)], //con ignore($this->project) non da errore se modifico solo content
+            'name' => ['required','min:3','max:150', Rule::unique('types')->ignore($this->type)], //con ignore($this->project) non da errore se modifico solo content
         ];
     }
 }

@@ -21,7 +21,8 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
         $count = Project::count();
-        return view('admin.projects.index', compact('projects', 'count'));
+        $butt= true;
+        return view('admin.projects.index', compact('projects', 'count','butt'));
     }
 
     /**

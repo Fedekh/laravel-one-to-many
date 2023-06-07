@@ -5,11 +5,22 @@
 
 
     <h3>Il capo: <span class="number text-decoration-underline"> {{ Auth::user()->name }}</span> </h3>
+    @if ($butt == false)
+    <h4>La lista dei tuoi tipi sono: <span class="number">{{ $count }}</span> </h4>
+    @else
     <h4>La lista dei progetti: <span class="number">{{ $count }}</span> </h4>
+
+    @endif
 
 
     <div class="text-end mb-5">
         <a href="{{ route('admin.projects.create') }}" class="btn btn-info">Crea un nuovo progetto</a>
+        <a href="{{ route('admin.types.index') }}" class="btn btn-info">Monitora i tuoi tipi</a>
+
+        @if ($butt == false)
+            <a href="{{ route('admin.types.create') }}" class="btn btn-info">Aggiungi un tipi</a>
+        @endif
+
     </div>
 
     <table class="table table-hover text-white rounded">
@@ -36,8 +47,13 @@
                         <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning">
-                            <i class="fa-solid fa-gear"></i>
+                        @if ($butt == true)
+                        
+                            <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning">
+                            @else
+                                <a href="{{ route('admin.types.edit', $project->slug) }}" class="btn btn-warning">
+                        @endif
+                        <i class="fa-solid fa-gear"></i>
                         </a>
                         @if ($project->title)
                             <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
@@ -48,7 +64,7 @@
                                 </button>
                             </form>
                         @else
-                            <form action="{{ route('admin.types.destroy', $project->slug )}}" method="POST">
+                            <form action="{{ route('admin.types.destroy', $project->slug) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger deletBtn">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Str;
 
 use App\Models\Type;
 
@@ -21,7 +22,8 @@ class TypeController extends Controller
     {
         $projects = Type::all();
         $count = Type::count();
-        return view('admin.projects.index', compact('projects','count'));
+        $butt= false;
+        return view('admin.projects.index', compact('projects','count', 'butt'));
 
     }
 
@@ -32,7 +34,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        return view('admin.types.create');
     }
 
     /**
@@ -43,8 +45,11 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        $data=$request->validated();
-        
+        $data= $request->validated();
+        $data['slug'] = Str::slug($data['name'], '-');
+        $type = Type::create($data);
+        return redirect()->route('admin.types.index')->with('message', 'Il tuo tipo ' . $type->name . ' è stato inserito con successo');
+
     }
 
     /**
@@ -53,9 +58,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Type $type)
     {
-        //
+        
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -64,9 +70,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Type $type)
     {
-        //
+
+        return view('admin.types.edit',compact('type'));
     }
 
     /**
@@ -76,9 +83,12 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name'], '-');
+        $type->update($data);
+        return redirect()->route('admin.types.index')->with('message', 'Il tuo tipo ' . $type->name . ' è stato modificato con successo');
     }
 
     /**
@@ -89,10 +99,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        $type->delete(); 
-        return view('admin.types.index');
-
-        // return redirect()->route('admin.types')->with('message', 'Il progetto ' . $type->title . ' è stato eliminato con successo');
-
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('message', 'Il tuo tipo' . $type->name . ' è stato eliminato con successo');
     }
 }

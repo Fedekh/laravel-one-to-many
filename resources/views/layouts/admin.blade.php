@@ -73,7 +73,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.projects.create') }}">
-                                    <i class="fa-regular fa-folder-open"></i> Crea uno nuovo
+                                    <i class="fa-regular fa-folder-open"></i> Crea uno nuovo Progetto
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.create' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.types.create') }}">
+                                    <i class="fa-regular fa-folder-open"></i> Aggiungi una nuova tipologia di progetto
                                 </a>
                             </li>
                         </ul>
