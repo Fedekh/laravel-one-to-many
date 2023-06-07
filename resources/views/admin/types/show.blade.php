@@ -1,21 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h3><span class="tiping my-4">Tipologia:</span> {{ $type->name }}</h3>
+    <div class="container text-center ">
 
-    <div class="cta d-flex gap-3 my-4">
+        <h3><span class="tiping my-5">Tipologia:</span> {{ $type->name }}</h3>
 
-        <a href="{{ route('admin.types.index') }}" class="btn btn-success">
-            Torna dietro</i>
-        </a>
-        <form action="{{ route('admin.types.destroy', $project->slug) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger deletBtn">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-        </form>
+        <div class="cta d-flex justify-content-center my-5 gap-5">
+            <div class="catin">
+                <a href="{{ route('admin.types.index') }}" class="btn btn-success"> Torna dietro </a>
+            </div>
+
+            <form action="{{ route('admin.types.destroy', $type->slug) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger deletBtn">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </form>
+        </div>
 
     </div>
-    @include('admin.types.delete')
+    @include('admin.projects.delete')
+
+    
 @endsection
