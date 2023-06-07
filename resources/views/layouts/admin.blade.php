@@ -37,7 +37,8 @@
             </div>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <p id="capo" class="d-inline-block mx-4"> {{ Auth::user()->name }}</p>
+                    <a class="nav-link d-inline-block" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

@@ -4,7 +4,8 @@
     @include('partials.messages')
 
 
-    <h1>La lista dei progetti: <span class="number">{{ $count }}</span> </h1>
+    <h3>Il capo: <span class="number text-decoration-underline"> {{ Auth::user()->name }}</span> </h3>
+    <h4>La lista dei progetti: <span class="number">{{ $count }}</span> </h4>
 
 
     <div class="text-end mb-5">
@@ -24,7 +25,12 @@
             @foreach ($projects as $project)
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
-                    <td>{{ $project->title }}</td>
+                    @if ($project->title)
+                        <td>{{ $project->title }}</td>
+                    @else
+                        <td>{{ $project->name }}</td>
+                    @endif
+
                     <td>{{ $project->slug }}</td>
                     <td class="d-flex gap-3">
                         <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
@@ -33,21 +39,30 @@
                         <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning">
                             <i class="fa-solid fa-gear"></i>
                         </a>
-                        <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger deletBtn">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </form>
+                        @if ($project->title)
+                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger deletBtn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('admin.types.destroy', $project->slug )}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger deletBtn">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        @endif
+
                     </td>
                 </tr>
             @endforeach
 
         </tbody>
-    
+
     </table>
     @include('admin.projects.delete')
-
-
 @endsection

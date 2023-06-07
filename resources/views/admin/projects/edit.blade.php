@@ -4,7 +4,7 @@
     <div class="container text-center">
 
 
-        <h1 class="my-3">Modifica il tuo progetto {{ $project->title}}: </h1>
+        <h1 class="my-3">Modifica il tuo progetto {{ $project->title }}: </h1>
         <div class="">
 
             <form action="{{ route('admin.projects.update', $project->slug) }}" method="POST">
@@ -29,13 +29,13 @@
                     <select class="form-select mx-auto w-25" id="type" name="type_id">
                         <option value=""></option>
                         @foreach ($types as $type)
-                            <option @selected($type->id == old('type_id',$project->type?->id)) value="{{ $type->id }}">{{ $type->name }}</option>
+                            <option @selected($type->id == old('type_id', $project->type?->id)) value="{{ $type->id }}">{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
 
-                <div class="form-group w-50 mx-auto mt-5">
+                <div class="form-group w-50 mx-auto my-5">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description', $project->description) }}</textarea>
 
@@ -52,12 +52,11 @@
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </form>
-            
-            
+
+
         </div>
 
     </div>
 
     @include('admin.projects.delete')
-
 @endsection

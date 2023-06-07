@@ -1,20 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-center">{{ $project->title }}</h1>
-    <div class="text-end">
-        {{ $project->slug }}
-    </div>
+    <h1 class="text-center my-4"><span class="tiping"> Progetto : </span>{{ $project->title }}</h1>
+    <h4 class="text-start my-3"> <span class="tiping"> Lo slug è:</span>  {{ $project->slug }} </h4>
 
-    <p class="mt-4">{{ $project->content }}</p>
+    <h4 class="my-4"><span class="tiping">La descrizione è :</span>  {{ $project->content }}</h4>
     
     @if ($project->type)
-        <h3>Tipologia: {{ $project->type->name }}</h3>
+        <h3><span class="tiping my-4">Tipologia:</span> {{ $project->type->name }}</h3>
     @else
-        <h3>Nessuna Tipologia</h3>
+        <h3><span class="tiping my-4">Nessuna Tipologia </span></h3>
     @endif
 
-    <div class="cta d-flex gap-3">
+    <div class="cta d-flex gap-3 my-4">
 
         <a href="{{ route('admin.projects.index') }}" class="btn btn-success">
             Torna dietro</i>
